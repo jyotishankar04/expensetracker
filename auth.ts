@@ -23,57 +23,6 @@ export const NEXT_AUTH: NextAuthOptions = {
     async redirect({ url, baseUrl }: any) {
       return baseUrl + "/dashboard";
     },
-    // async signIn({ user, account }: any) {
-    //   // console.log(user, account);
-
-    //   if (account.provider === "google") {
-    //     const { name, email, image, id } = user;
-    //     const isExisting = await prisma.user.findFirst({
-    //       where: { email: email },
-    //     });
-
-    //     if (isExisting) {
-    //       return true;
-    //     }
-
-    //     const res = await prisma.user.create({
-    //       data: {
-    //         name,
-    //         email,
-    //         avatar: image,
-    //         google_id: id,
-    //       },
-    //     });
-    //     if (res) {
-    //       return true;
-    //     }
-    //     return false;
-    //   }
-    //   if (account.provider === "github") {
-    //     const { name, email, image, id } = user;
-    //     const isExisting = await prisma.user.findFirst({
-    //       where: { email: email },
-    //     });
-
-    //     if (isExisting) {
-    //       return true;
-    //     }
-
-    //     const res = await prisma.user.create({
-    //       data: {
-    //         name,
-    //         email,
-    //         avatar: image,
-    //         google_id: id,
-    //       },
-    //     });
-    //     if (res) {
-    //       return true;
-    //     }
-    //     return false;
-    //   }
-    //   return true;
-    // },
     async signIn({ user, account }) {
       const { email } = user;
       const existingUser = await prisma.user.findFirst({

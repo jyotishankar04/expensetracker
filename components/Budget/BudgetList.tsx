@@ -14,7 +14,7 @@ function BudgetList() {
       const response = await fetch("/api/budget/list");
 
       const data = await response.json();
-      console.log(data);
+      // console.log(data);
 
       setData(data);
       setLoading(false);
