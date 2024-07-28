@@ -1,0 +1,91 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Account {
+  id                       String  @id @default(cuid())
+  userId                   String
+  type                     String
+  provider                 String
+  providerAccountId        String
+  refresh_token            String? @db.Text
+  refresh_token_expires_in Int?
+  access_token             String? @db.Text
+  expires_at               Int?
+  token_type               String?
+  scope                    String?
+  id_token                 String? @db.Text
+  session_state            String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+
+model User {
+  id        String  @id @default(uuid())
+  name      String
+  email     String  @unique
+  password String?
+  image String 
+  emailVerified Boolean @default(false)
+  google_id String?
+  github_id String?
+  sessions Session[]
+  accounts Account[]
+
+
+  budgets   Budget[]
+  expenses Expense[]
+
+  created_at DateTime @default(now())
+  @@map("users")
+}
+model Budget{
+  id           String  @id @default(uuid())
+  name        String 
+  emoji String?
+  amount      Float
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+  user_id     String
+  expenses Expense[]
+
+  user         User @relation(fields: [user_id], references: [id])
+
+}
+
+model Expense{
+  id           String  @id @default(uuid())
+  name String
+  amount      Float
+
+  budget_id String
+  user_id String
+
+  budget Budget @relation(fields: [budget_id], references: [id])
+  user User @relation(fields: [user_id], references: [id])
+
+
+  created_at DateTime @default(now())
+}
