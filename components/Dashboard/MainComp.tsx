@@ -28,7 +28,9 @@ function MainComp() {
   }, []);
   const fetchStats = async () => {
     setIsLoading(true);
-    const fetch = await axios.get("http://localhost:3000/api/dashboard/stats");
+    const fetch = await axios.get(
+      "https://expensemate.devsuvam.xyz/api/dashboard/stats"
+    );
     const stats: any = fetch.data;
     // console.log(stats);
     setStats(stats);

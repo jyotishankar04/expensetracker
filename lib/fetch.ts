@@ -3,7 +3,7 @@ import axios from "axios";
 export const fetchStarts = async () => {
   try {
     const fetchStats = await axios.get(
-      "http://localhost:3000/api/dashboard/stats"
+      "https://expensemate.devsuvam.xyz/api/dashboard/stats"
     );
     // console.log(fetchStats.data);
 

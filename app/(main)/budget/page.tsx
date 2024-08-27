@@ -6,9 +6,11 @@ import axios from "axios";
 
 async function fetchBudgets() {
   try {
-    axios.get("http://localhost:3000/api/budget/list").then((res) => {
-      return res.data;
-    });
+    axios
+      .get("https://expensemate.devsuvam.xyz/api/budget/list")
+      .then((res) => {
+        return res.data;
+      });
   } catch (error) {
     console.error("Error fetching budgets", error);
     return [];

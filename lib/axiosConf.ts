@@ -1,6 +1,6 @@
 import axios from "axios";
 const axiosClient = axios.create({
-  baseURL: "http://localhost:3000/api",
+  baseURL: "https://expensemate.devsuvam.xyz",
 });
 
 export default axiosClient;

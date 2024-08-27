@@ -11,7 +11,7 @@ const BudgetCardDetails: React.FC<{ id: string }> = ({ id }) => {
     setLoading(true);
     try {
       const response = await axios.get(
-        `http://localhost:3000/api/budget/${id}`
+        `https://expensemate.devsuvam.xyz/api/budget/${id}`
       );
       setData(response.data);
     } catch (error) {

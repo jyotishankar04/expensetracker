@@ -31,7 +31,9 @@ function ExpenseCard() {
 
   const fetchExpense = async () => {
     setExpenseLoading(true);
-    const expenses = await axios.get("http://localhost:3000/api/expense/list");
+    const expenses = await axios.get(
+      "https://expensemate.devsuvam.xyz/api/expense/list"
+    );
     const data = await expenses.data;
 
     setExpense(data);

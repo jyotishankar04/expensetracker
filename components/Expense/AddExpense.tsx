@@ -38,7 +38,9 @@ const AddExpense: React.FC<{ fetchExpense: () => void }> = ({
   const session = useSession();
   const [category, setCategory] = useState<any>([]);
   const fetchCategories = async () => {
-    const { data } = await axios.get("http://localhost:3000/api/budget/list");
+    const { data } = await axios.get(
+      "https://expensemate.devsuvam.xyz/api/budget/list"
+    );
     setCategory(data);
   };
   const [data, setData] = useState({

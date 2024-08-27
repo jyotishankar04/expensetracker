@@ -27,13 +27,16 @@ const AddBudgetExpense: React.FC<{ router: any }> = ({ router }) => {
     }
 
     setButtonLoading(true);
-    const res = await fetch(`http://localhost:3000/api/expense/add`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    });
+    const res = await fetch(
+      `https://expensemate.devsuvam.xyz/api/expense/add`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      }
+    );
     if (!res.ok) {
       toast.error("Failed to add expense");
       setButtonLoading(false);
